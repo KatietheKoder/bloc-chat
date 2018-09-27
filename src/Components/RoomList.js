@@ -53,30 +53,23 @@ class RoomList extends Component {
 
   render() {
 
-      const RoomList = this.state.rooms.map((room)=>{
+    return (
 
-      return ( <li key={room.key} onClick={ (e) => {this.selectRoom(room,e)} }> {room.name}.
+      <div className="selectRoom">
+      {this.state.rooms.map((room) => {
 
-      </li>);
+      <li key={room.key} onClick={ (e) => {this.selectRoom(room, e)}> {room.name} </li>}
 
-  })
+      <div className= "RoomForm">
+      <form onSubmit={this.createRoom}>
+      <h2>Add a room:</h2>
+      <input type="text" value={this.state.name} placeholder="Type room name" onChange={this.roomChange} />
+      <input type="submit" value="Submit"/>
+      </form>
+      </div>
 
-  let roomForm = (
-  <div id= 'SelectRoom'>
-  <form onSubmit={this.createRoom}>
-     <h2>Add a room:</h2>
-     <input type="text" value={this.state.name} placeholder="Type room name" onChange={this.roomChange} />
-     <input type="submit" value="Submit"/>
-   </form>
-
- );
-
-return (
-        <div className='selectRoom'>
-          <ul>{RoomList}</ul>
-          <ul>{RoomForm}</ul>
-        </div>
-      );
+     }
+  );
 }
 
 export default RoomList;
