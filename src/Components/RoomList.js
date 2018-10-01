@@ -55,20 +55,20 @@ class RoomList extends Component {
 
     return (
 
-      <div className="selectRoom">
+      <div className="selectRoom"/>
       {this.state.rooms.map((room) => {
 
-      <li key={room.key} onClick={ (e) => this.selectRoom(room, e)> {room.name}} </li>
+      <li key={room.key} onClick={ (e) => this.selectRoom(room, e) (room.name)} >
+      </li>
 
-      <div className= "RoomForm">
+      <div className= "RoomForm"/>
       <form onSubmit={this.createRoom}>
       <h2>Add a room:</h2>
       <input type="text" value={this.state.name} placeholder="Type room name" onChange={this.roomChange} />
       <input type="submit" value="Submit"/>
       </form>
-      </div>
-
-     }
+      )
+    }
   );
 }
 
