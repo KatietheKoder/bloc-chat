@@ -7,7 +7,7 @@ class RoomList extends Component {
     super(props)
     this.state = {
       rooms:[]
-
+      
       }
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -19,7 +19,7 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
         this.setState(
-          { 
+          {
 
             rooms: this.state.rooms.concat( room ),
             formCache:""
@@ -27,7 +27,6 @@ class RoomList extends Component {
           }
 
         )
-
     });
   }
 
@@ -41,16 +40,13 @@ class RoomList extends Component {
     this.setState({
       formCache:""
     });
-
-  }
+}
 
   handleChange=(event)=>{
      this.setState({
       formCache:event.target.value
      });
-
-    
-  }
+}
 
   render() {
 
