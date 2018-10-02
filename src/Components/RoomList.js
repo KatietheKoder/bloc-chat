@@ -6,8 +6,8 @@ class RoomList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rooms:[]
-      
+      rooms:[],
+      formCache: ''
       }
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -22,7 +22,6 @@ class RoomList extends Component {
           {
 
             rooms: this.state.rooms.concat( room ),
-            formCache:""
 
           }
 
