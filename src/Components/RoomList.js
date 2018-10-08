@@ -21,7 +21,7 @@ class RoomList extends Component {
         this.setState(
           {
 
-            rooms: this.state.rooms.concat( room ),
+            rooms: this.state.rooms.concat( room )
 
           }
 
@@ -50,7 +50,7 @@ class RoomList extends Component {
   render() {
 
     const RoomList = this.state.rooms.map((room)=>{
-                        return (<li key={room.key}> {room.name}. </li>)
+                        return (<li key={room.key} onClick = {()=>this.props.setRoom(room.key)}> {room.name}. </li>)
                       })
 
     return (
