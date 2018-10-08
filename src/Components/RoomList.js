@@ -24,12 +24,18 @@ class RoomList extends Component {
        }
 
 
+  activeRoom = room => {
+         this.props.makeActiveRoom( room );
+         this.setState({ display: true });
+       }
+
+
   render() {
 
 
       const RoomList = this.state.rooms.map((room)=>{
 
-      return ( <li key={room.key} onClick={ (e) => {this.selectRoom(room,e)} }> {room.name}.
+      return ( <li key={room.key} onClick={ (e) => this.selectRoom(room,e) }> {room.name}.
 
       </li>)
 
@@ -37,7 +43,12 @@ class RoomList extends Component {
 
     return (
       <div className= 'SelectRoom'>
-        <ul>{RoomList}</ul>
+      <form onSubmit={this.createRoom}>
+      <h2>Add a room:</h2>
+      <input type="text" value={this.state.name} placeholder="Type room name" onChange={this.roomChange} />
+      <input type="submit" value="Submit"/>
+      </form>
+      <ul>{RoomList}</ul>
       </div>
     );
   }
