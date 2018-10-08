@@ -6,7 +6,8 @@ class RoomList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rooms:[]
+      rooms:[],
+      formCache:""
       
       }
 
@@ -21,8 +22,7 @@ class RoomList extends Component {
         this.setState(
           {
 
-            rooms: this.state.rooms.concat( room ),
-            formCache:""
+            rooms: this.state.rooms.concat( room )
 
           }
 
@@ -46,7 +46,7 @@ class RoomList extends Component {
      this.setState({
       formCache:event.target.value
      });
-}
+  }
 
   render() {
 
@@ -57,7 +57,7 @@ class RoomList extends Component {
     return (
     <div>
       <form onSubmit = {this.createRoom}>
-        <input type = "text" onChange = {this.handleChange} value={this.state.formCache}/>
+        <input type = "text" onChange = {(event)=>this.handleChange(event)} value={this.state.formCache}/>
         <input type = "submit"/>
       </form>
 
