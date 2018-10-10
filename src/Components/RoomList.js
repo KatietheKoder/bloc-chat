@@ -4,11 +4,11 @@ import React, { Component } from "react";
 
 class RoomList extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
-      rooms:[]
-
-      }
+      rooms:[],
+      formCache: ''
+      };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
@@ -16,32 +16,27 @@ class RoomList extends Component {
   componentDidMount() {
 
     this.roomsRef.on('child_added', snapshot => {
-         const room = snapshot.val();
-         room.key = snapshot.key;
-         this.setState({ rooms: this.state.rooms.concat( room ) })
+      const room = snapshot.val();
+      room.key = snapshot.key;
+        this.setState({
+        rooms: this.state.rooms.concat( room ) })
+    });
+  }
 
-          });
+ activeRoom = (room) => {
+        this.props.makeActiveRoom( room );
+        this.setState({ display: true });
        }
 
 
-  activeRoom = room => {
-         this.props.makeActiveRoom( room );
-         this.setState({ display: true });
-       }
+render() {
 
-
-  render() {
-
-
-      const RoomList = this.state.rooms.map((room)=>{
-
-      return ( <li key={room.key} onClick={ (e) => this.selectRoom(room,e) }> {room.name}.
-
-      </li>)
-
-  })
+    const RoomList = this.state.rooms.map((room)=>{
+                        return (<li key={room.key} onClick = {()=>this.props.setRoom(room.key)}> {room.name}. </li>)
+                      })
 
     return (
+    <div>
       <div className= 'SelectRoom'>
       <form onSubmit={this.createRoom}>
       <h2>Add a room:</h2>
@@ -50,8 +45,11 @@ class RoomList extends Component {
       </form>
       <ul>{RoomList}</ul>
       </div>
-    );
-  }
+   </div>
+     );
+   }
+
 }
+
 
 export default RoomList;

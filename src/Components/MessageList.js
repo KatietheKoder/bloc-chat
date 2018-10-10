@@ -1,46 +1,73 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 
 
 class MessageList extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      messages:[]
 
-      }
+    constructor(props) {
+        super(props)
 
-    this.messagesRef = this.props.firebase.database().ref('messages');
-  }
+        this.state = {
+            messages: [],
 
-  componentDidMount() {
 
-    this.roomsRef.on('child_added', snapshot => {
-         const message = snapshot.val();
-         message.key = snapshot.key;
-         this.setState({ messages: this.state.messages.concat( message ) })
+        }
 
-          });
+        this.messagesRef = this.props.firebase.database().ref('messages')
+
+    }
+
+    componentDidMount() {
+        let temp = [];
+        this.messagesRef.on('child_added', snapshot => {
+            console.log(snapshot.val());
+            temp.push(snapshot.val())
+            this.setState({
+                messages: temp
+            })
+
+            console.log(this.state.messages);
+        });
+    }
+
+
+    createMessage(e) {
+      e.preventDefault();
+      this.messagesRef.push(
+        {
+          content: this.state.content,
+          sentAt: this.state.sentAt,
+          roomId: this.state.roomId,
+          username: this.props.currentUser
+        }
+      );
+       this.setState ({
+         message: "",
+         sentAt: "",
+         roomId: ""
+      })
+      e.target.reset()
+     };
+
+   render() {
+
+      const activeRoom = this.props.activeRoom
+
+      const currentMessages = (
+     this.state.messages.map((message)=> {
+       if (message.roomId === activeRoom) {
+         return <li key={message.key}>{message.content}</li>
        }
+       return null;
+     })
+   );
 
+        return (
+          <div id="messages">
+          </div>
 
-  render() {
-
-
-      const RoomList = this.state.rooms.map((room)=>{
-
-      return ( <li key={room.key} onClick={ (e) => {this.selectRoom(room,e)} }> {room.name}.
-
-      </li>)
-
-  })
-
-    return (
-      <div className= 'SelectRoom'>
-        <ul>{RoomList}</ul>
-      </div>
-    );
-  }
+        )
+    }
 }
 
 export default MessageList;
