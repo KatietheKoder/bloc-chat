@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import * as firebase from 'firebase';
 
 
 class MessageList extends Component {
@@ -14,8 +14,38 @@ class MessageList extends Component {
         }
 
         this.messagesRef = this.props.firebase.database().ref('messages')
+        this.createMessage = this.createMessage.bind(this);
+        this.messageContent = this.messageContent.bind(this);
 
     }
+
+    messageContent(e) {
+        e.preventDefault();
+        this.setState({
+            username: this.props.user,
+            content: e.target.value,
+            sentAt: firebase.database.ServerValue.TIMESTAMP,
+            roomId: this.props.activeRoom
+        });
+    }
+
+    createMessage(e) {
+        e.preventDefault();
+        this.messagesRef.push({
+            username: this.state.username,
+            content: this.state.content,
+            sentAt: this.state.sentAt,
+            roomId: this.state.roomId
+            });
+
+        this.setState({
+            username: "",
+            content: "",
+            sentAt: "",
+            roomId: ""
+        });
+    }
+
 
     componentDidMount() {
         let temp = [];
@@ -64,6 +94,7 @@ class MessageList extends Component {
 
         return (
           <div id="messages">
+          <div> {currentMessages} </div>
           </div>
 
         )
