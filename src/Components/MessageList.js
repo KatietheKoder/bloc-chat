@@ -61,24 +61,6 @@ class MessageList extends Component {
     }
 
 
-    createMessage(e) {
-      e.preventDefault();
-      this.messagesRef.push(
-        {
-          content: this.state.content,
-          sentAt: this.state.sentAt,
-          roomId: this.state.roomId,
-          username: this.props.currentUser
-        }
-      );
-       this.setState ({
-         message: "",
-         sentAt: "",
-         roomId: ""
-      })
-      e.target.reset()
-     };
-
    render() {
 
       const activeRoom = this.props.activeRoom

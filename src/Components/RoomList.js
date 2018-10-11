@@ -23,16 +23,35 @@ class RoomList extends Component {
     });
   }
 
+
+  createRoom=(event)=>{
+     event.preventDefault()
+
+     this.roomsRef.push({
+       name: this.state.formCache
+     });
+
+     this.setState({
+       formCache:""
+     });
+ }
+
  activeRoom = (room) => {
         this.props.makeActiveRoom( room );
         this.setState({ display: true });
        }
 
+  roomChange=(event)=>{
+        this.setState({
+        formCache:event.target.value
+        });
+      }
+
 
 render() {
 
     const RoomList = this.state.rooms.map((room)=>{
-                        return (<li key={room.key} onClick = {()=>this.props.setRoom(room.key)}> {room.name}. </li>)
+                        return (<li key={room.key} onClick = {()=>this.props.setRoom(room.key)}> {room.name} </li>)
                       })
 
     return (
