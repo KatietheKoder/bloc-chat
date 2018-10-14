@@ -7,14 +7,14 @@ import User from './Components/User';
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyAhi6d9R5fBHKeSJ5vxMQrir90oESDR_BI",
-  authDomain: "bloc-chat-ca50e.firebaseapp.com",
-  databaseURL: "https://bloc-chat-ca50e.firebaseio.com",
-  projectId: "bloc-chat-ca50e",
-  storageBucket: "bloc-chat-ca50e.appspot.com",
-  messagingSenderId: "858065703412"
-};
-firebase.initializeApp(config);
+   apiKey: "AIzaSyAhi6d9R5fBHKeSJ5vxMQrir90oESDR_BI",
+   authDomain: "bloc-chat-ca50e.firebaseapp.com",
+   databaseURL: "https://bloc-chat-ca50e.firebaseio.com",
+   projectId: "bloc-chat-ca50e",
+   storageBucket: "bloc-chat-ca50e.appspot.com",
+   messagingSenderId: "858065703412"
+ };
+ firebase.initializeApp(config);
 
 class App extends Component {
     constructor(props){
