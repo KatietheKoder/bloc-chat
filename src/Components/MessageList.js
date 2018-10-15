@@ -49,7 +49,7 @@ class MessageList extends Component {
                 return <li key={index}>{message.content}</li>
             }
           
-        })
+        });
 
 
 
