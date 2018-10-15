@@ -36,8 +36,16 @@ console.log(this.state.activeRoom)
     return (
       <div className="App">
         <RoomList
-        firebase={firebase}
-        setRoom = {this.setRoom} />
+          firebase={firebase}
+          setRoom = {this.setRoom} 
+        />
+
+        <MessageList 
+          firebase={firebase}
+          activeRoom = {this.state.activeRoom}
+        />
+
+
       </div>
     );
   }
