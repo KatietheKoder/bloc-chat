@@ -31,9 +31,9 @@ class App extends Component {
     });
   };
 
-  setUser(user) {
-   this.setState({ user: user });
- }
+  setUser = user => {
+    this.setState({ user: user });
+  }
 
 
   render() {
