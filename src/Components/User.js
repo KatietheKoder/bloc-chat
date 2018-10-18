@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import * as firebase from "firebase";
 
-class User extends Component {
+export class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: null
     };
-
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
   }
@@ -25,6 +23,7 @@ class User extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
+        // this.props.setUser(user);
         this.setState({ username: user });
       });
   }
