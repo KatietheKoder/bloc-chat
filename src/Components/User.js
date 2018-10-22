@@ -4,7 +4,7 @@ export class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null
+      user: null
     };
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
@@ -23,8 +23,8 @@ export class User extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        // this.props.setUser(user);
-        this.setState({ username: user });
+        this.props.setUser(user);
+        //this.setState({ user: user });
       });
   }
 
@@ -41,7 +41,7 @@ export class User extends Component {
     return (
       <div>
         <p>Signed in as: {this.props.userHere}</p>
-        {!this.state.username ? (
+        {!this.state.user ? (
           <button onClick={this.signIn}>Sign in</button>
         ) : (
           <button onClick={this.signOut}>Sign out</button>
