@@ -18,6 +18,7 @@ class MessageList extends Component {
 
   messageContent(e) {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({
       content: e.target.value
     });
@@ -25,30 +26,28 @@ class MessageList extends Component {
 
   createMessage(e) {
     e.preventDefault();
-    console.log(this.state)
+    console.log(this.props.activeRoom);
     this.messagesRef.push({
-      user: this.props.user,
-      sentAt: this.state.sentAt,
-      roomId: this.state.roomId
+      user: "Joe",
+      sentAt: "6:00",
+      roomId: this.props.activeRoom,
+      content: this.state.content
     });
 
     this.setState({
       user: "",
       sentAt: "",
-      roomId: ""
+      content: ""
     });
   }
 
   componentDidMount() {
     let temp = [];
     this.messagesRef.on("child_added", snapshot => {
-      console.log(snapshot.val());
       temp.push(snapshot.val());
       this.setState({
         messages: temp
       });
-
-      console.log(this.state.messages);
     });
   }
 
@@ -56,9 +55,6 @@ class MessageList extends Component {
     const activeRoom = this.props.activeRoom;
 
     let result = this.state.messages.map((message, index) => {
-      console.log(activeRoom + " active room from messages");
-      console.log(message.roomId + " message room id from messages");
-
       if (message.roomId == activeRoom) {
         return <li key={index}>{message.content}</li>;
       }
@@ -76,10 +72,10 @@ class MessageList extends Component {
       </form>
     );
 
-    const currentMessages = this.state.messages.map(message => {
+    const currentMessages = this.state.messages.map((message, index) => {
       if (message.roomId === activeRoom) {
         return (
-          <li key={message.key}>
+          <li key={index}>
             {message.user}: {message.content}
           </li>
         );

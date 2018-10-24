@@ -23,8 +23,8 @@ export class User extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        this.props.setUser(user);
-        //this.setState({ user: user });
+        //sthis.props.setUser(user);
+        this.setState({ user: user });
       });
   }
 

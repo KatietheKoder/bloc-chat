@@ -31,30 +31,36 @@ class App extends Component {
     });
   };
 
-
   setUser = user => {
     this.setState({
       user: user
     });
-  }
-
+  };
 
   render() {
     //console.log(this.state.activeRoom);
-    const activeUser = this.state.user === null ? "Guest" : this.state.user.displayName
+    const activeUser =
+      this.state.user === null ? "Guest" : this.state.user.displayName;
 
-  return (
+    return (
       <div className="App">
-      <User
-      firebase={firebase}
-      setUser={this.setUser}
-      userHere={activeUser} />
-      <RoomList
-      firebase={firebase}
-      setRoom={this.setRoom} />
-      <MessageList
-      firebase={firebase}
-      activeRoom={this.state.activeRoom} />
+        <User
+          firebase={firebase}
+          setUser={this.setUser}
+          userHere={activeUser}
+        />
+        <RoomList
+        firebase={firebase}
+        setRoom={this.setRoom}
+        />
+        <MessageList
+        firebase={firebase}
+        activeRoom={this.state.activeRoom}
+        />
+        <User
+        firebase={firebase}
+        User={this.state.user}
+        />
       </div>
     );
   }
