@@ -8,6 +8,7 @@ class MessageList extends Component {
     this.state = {
       user: "",
       content: "",
+      roomId: "",
       messages: []
     };
 
@@ -28,7 +29,7 @@ class MessageList extends Component {
     e.preventDefault();
     console.log(this.props.activeRoom);
     this.messagesRef.push({
-      user: "Joe",
+      user: this.props.user,
       sentAt: "6:00",
       roomId: this.props.activeRoom,
       content: this.state.content

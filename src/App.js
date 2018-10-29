@@ -32,6 +32,7 @@ class App extends Component {
   };
 
   setUser = user => {
+    console.log("USER:", user);
     this.setState({
       user: user
     });
@@ -39,8 +40,7 @@ class App extends Component {
 
   render() {
     //console.log(this.state.activeRoom);
-    const activeUser =
-      this.state.user === null ? "Guest" : this.state.user.displayName;
+    const activeUser = this.props.user ? this.props.user.displayName : "Guest";
 
     return (
       <div className="App">
@@ -56,6 +56,7 @@ class App extends Component {
         <MessageList
         firebase={firebase}
         activeRoom={this.state.activeRoom}
+        user={this.props.user}
         />
         <User
         firebase={firebase}

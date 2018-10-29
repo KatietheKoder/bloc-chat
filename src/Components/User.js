@@ -23,7 +23,7 @@ export class User extends Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        //sthis.props.setUser(user);
+        //this.props.setUser(user);
         this.setState({ user: user });
       });
   }
@@ -44,7 +44,8 @@ export class User extends Component {
         {!this.state.user ? (
           <button onClick={this.signIn}>Sign in</button>
         ) : (
-          <button onClick={this.signOut}>Sign out</button>
+          <button onClick={this.signOut
+          }>Sign out</button>
         )}
       </div>
     );
