@@ -29,9 +29,7 @@ class MessageList extends Component {
     const activeRoom = this.props.activeRoom;
 
     let result = this.state.messages.map((message, index) => {
-      console.log(activeRoom + " active room from messages");
-      console.log(message.roomId + " message room id from messages");
-
+      
       if (message.roomId == activeRoom) {
         return <li key={index}>{message.content}</li>;
       }

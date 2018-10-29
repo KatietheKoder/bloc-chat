@@ -41,11 +41,11 @@ export class User extends Component {
     return (
       <div>
         <p>Signed in as: {this.props.userHere}</p>
-        {!this.state.username ? (
+
           <button onClick={this.signIn}>Sign in</button>
-        ) : (
+
           <button onClick={this.signOut}>Sign out</button>
-        )}
+        
       </div>
     );
   }
