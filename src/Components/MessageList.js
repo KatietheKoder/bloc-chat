@@ -6,11 +6,28 @@ class MessageList extends Component {
     super(props);
 
     this.state = {
+      content: "",
       messages: []
     };
 
     this.messagesRef = this.props.firebase.database().ref("messages");
+    this.messageContent = this.messageContent.bind(this);
   }
+
+  messageContent(e) {
+   e.preventDefault();
+   console.log(e.target.value);
+   this.setState({
+     content: e.target.value
+   });
+ }
+
+ createMessage(e) {
+     e.preventDefault();
+       content: this.state.content
+     };
+
+
 
   componentDidMount() {
     let temp = [];
@@ -29,7 +46,7 @@ class MessageList extends Component {
     const activeRoom = this.props.activeRoom;
 
     let result = this.state.messages.map((message, index) => {
-      
+
       if (message.roomId == activeRoom) {
         return <li key={index}>{message.content}</li>;
       }
@@ -37,6 +54,15 @@ class MessageList extends Component {
 
     return (
       <div id="messages">
+      <form onSubmit={this.createMessage}>
+        <input
+          type="text"
+          value={this.state.content}
+          placeholder="Enter message here"
+          onChange={this.messageContent}
+        />
+        <input type="submit" value="Send" />
+      </form>
         <ul>{result}</ul>
       </div>
     );

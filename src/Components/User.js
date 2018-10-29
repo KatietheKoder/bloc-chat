@@ -45,7 +45,7 @@ export class User extends Component {
           <button onClick={this.signIn}>Sign in</button>
 
           <button onClick={this.signOut}>Sign out</button>
-        
+
       </div>
     );
   }
