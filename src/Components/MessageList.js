@@ -22,10 +22,20 @@ class MessageList extends Component {
    });
  }
 
- createMessage(e) {
+ createMessage=(e)=> {
      e.preventDefault();
-       content: this.state.content
-     };
+     console.log(this.props.activeRoom);
+     this.messagesRef.push({
+       sentAt: "8:00",
+       content: this.state.content,
+       roomId: this.props.activeRoom
+     });
+
+     this.setState({
+       sentAt: "",
+       content: ""
+     });
+   }
 
 
 
