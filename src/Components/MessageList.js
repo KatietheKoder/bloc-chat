@@ -38,7 +38,6 @@ class MessageList extends Component {
    }
 
 
-
   componentDidMount() {
     let temp = [];
     this.messagesRef.on("child_added", snapshot => {
