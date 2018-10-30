@@ -16,29 +16,38 @@ class MessageList extends Component {
 
   messageContent(e) {
    e.preventDefault();
-   console.log(e.target.value);
+
    this.setState({
      content: e.target.value
    });
  }
 
- createMessage(e) {
+  //_____________________________________BEGIN Williams edit
+
+ createMessage=(e)=> {                  // You forgot to bind your method - :)
      e.preventDefault();
-       content: this.state.content
-     };
+
+ 
+     console.log("worked");
+     console.log(this.state.content);
+  
+
+  };
+
+
+
+  //_______________________________________END Williams edit
 
 
 
   componentDidMount() {
     let temp = [];
     this.messagesRef.on("child_added", snapshot => {
-      console.log(snapshot.val());
       temp.push(snapshot.val());
       this.setState({
         messages: temp
       });
 
-      console.log(this.state.messages);
     });
   }
 
@@ -51,6 +60,8 @@ class MessageList extends Component {
         return <li key={index}>{message.content}</li>;
       }
     });
+
+    console.log(this.state.content);
 
     return (
       <div id="messages">
