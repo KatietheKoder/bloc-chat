@@ -7,6 +7,8 @@ class MessageList extends Component {
 
     this.state = {
       content: "",
+      user: "",
+      roomId: "",
       messages: []
     };
 
@@ -15,28 +17,30 @@ class MessageList extends Component {
   }
 
   messageContent(e) {
-   e.preventDefault();
-   console.log(e.target.value);
-   this.setState({
-     content: e.target.value
-   });
- }
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({
+      content: e.target.value
+    });
+  }
 
- createMessage=(e)=> {
-     e.preventDefault();
-     console.log(this.props.activeRoom);
-     this.messagesRef.push({
-       sentAt: "8:00",
-       content: this.state.content,
-       roomId: this.props.activeRoom
-     });
+  createMessage = e => {
+    e.preventDefault();
+    console.log(this.props.user);
+    this.messagesRef.push({
+      user: this.props.user ? this.props.user.displayName : "Guest",
+      sentAt: firebase.database.ServerValue.TIMESTAMP,
+      content: this.state.content,
+      roomId: this.props.activeRoom
+    });
 
-     this.setState({
-       sentAt: "",
-       content: ""
-     });
-   }
-
+    this.setState({
+      user: "",
+      sentAt: "",
+      content: "",
+      roomId: ""
+    });
+  };
 
   componentDidMount() {
     let temp = [];
@@ -55,23 +59,30 @@ class MessageList extends Component {
     const activeRoom = this.props.activeRoom;
 
     let result = this.state.messages.map((message, index) => {
-
       if (message.roomId == activeRoom) {
-        return <li key={index}>{message.content}</li>;
+        return (
+          <table key={index}>
+            <tr>
+              <td className="message-username">{message.user}</td>
+              <td className="message-content">{message.content}</td>
+              <td className="message-sentAt">{message.sentAt}</td>
+            </tr>
+          </table>
+        );
       }
     });
 
     return (
       <div id="messages">
-      <form onSubmit={this.createMessage}>
-        <input
-          type="text"
-          value={this.state.content}
-          placeholder="Enter message here"
-          onChange={this.messageContent}
-        />
-        <input type="submit" value="Send" />
-      </form>
+        <form onSubmit={this.createMessage}>
+          <input
+            type="text"
+            value={this.state.content}
+            placeholder="Enter message here"
+            onChange={this.messageContent}
+          />
+          <input type="submit" value="Send" />
+        </form>
         <ul>{result}</ul>
       </div>
     );
