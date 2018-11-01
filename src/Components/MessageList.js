@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as firebase from "firebase";
+import Timestamp from "react-timestamp";
 
 class MessageList extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class MessageList extends Component {
             <tr>
               <td className="message-username">{message.user}</td>
               <td className="message-content">{message.content}</td>
-              <td className="message-sentAt">{message.sentAt}</td>
+              <Timestamp time={message.sentAt} format='full'  includeDay />
             </tr>
           </table>
         );
