@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Styles/User.css';
 
 export class User extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export class User extends Component {
 
   render() {
     return (
-      <div>
+      <div className="user">
         <p>Signed in as: {this.props.userHere}</p>
 
         <button onClick={this.signIn}>Sign in</button>

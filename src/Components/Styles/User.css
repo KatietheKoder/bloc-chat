@@ -1,0 +1,6 @@
+.user {
+  margin-left: inherit;
+  background-color: #ffa100;
+  position: sticky;
+  flex-grow: 1;
+}

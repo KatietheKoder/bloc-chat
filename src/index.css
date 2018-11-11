@@ -1,5 +1,30 @@
+html {
+  border: 0.5rem solid red;
+  border-spacing: inherit;
+
+}
+
+h1 {
+  margin-left: auto;
+  font-family: "Cantora One", sans-serif;
+  color: pink;
+  font-size: 50px;
+  margin: auto;
+}
+
+h2 {
+  font-family: "Cantora One", sans-serif;
+  color: pink;
+  font-size: 30px;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
+  margin: auto;
+  overflow: visible;
+  flex: 1 1 20em;
+}
+
+button.hover {
+  color: blue;
 }

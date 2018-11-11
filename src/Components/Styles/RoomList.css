@@ -1,0 +1,9 @@
+.roomlist {
+  position: sticky;
+  background-color: #ffb435;
+  flex-grow: 1;
+}
+
+ul {
+list-style-type: none;
+}

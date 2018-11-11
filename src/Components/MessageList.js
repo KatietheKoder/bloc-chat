@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "firebase";
 import Timestamp from "react-timestamp";
+import './Styles/MessageList.css';
 
 class MessageList extends Component {
   constructor(props) {
@@ -43,6 +44,9 @@ class MessageList extends Component {
     });
   };
 
+
+
+
   componentDidMount() {
     let temp = [];
     this.messagesRef.on("child_added", snapshot => {
@@ -74,7 +78,7 @@ class MessageList extends Component {
     });
 
     return (
-      <div id="messages">
+      <div className="messages">
         <form onSubmit={this.createMessage}>
           <input
             type="text"
